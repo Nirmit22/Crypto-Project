@@ -1,0 +1,20 @@
+    <form action="/display" method="POST">
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control text-center"
+          name="secret"
+          placeholder="What's your secret?"
+        />
+      </div>
+      <input list="algos" name="algo" />
+      <datalist id="algos">
+        <option value="RSA"></option>
+        <option value="AES"></option>
+        <option value="DES"></option>
+      </datalist>
+
+      <input type="submit" class="btn btn-dark" />
+    </form>
+  </div>
+</div>
