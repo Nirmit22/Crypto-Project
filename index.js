@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require("express");
-
+var crypto = require('./lib/cryptDes');
+var aes256 = require('./aes')
 const path = require("path");
 const ejs = require("ejs");
 const cors = require("cors");
@@ -44,17 +45,24 @@ app.post("/display", (req, res) => {
   }
   else if (obj.algo === 'AES')
   {
+    var key = 'Heisenberg';
+    ciphertext = aes256.encrypt(key, obj.secret);
+    var decrypted = aes256.decrypt(key, ciphertext);
+    obj.e_msg = ciphertext;
+    obj.d_msg = decrypted;
+    obj.org = obj.secret;
 
   }
   else if(obj.algo === 'DES')
   {
-      const message = DES.bin(obj.secret)
-      const key = DES.bin(process.env.DES_KEY)
-      const enc = DES.encode(message, key)
-      obj.e_msg=enc;
-      const dec = DES.decode(enc,key)
-      obj.d_msg= dec;
-
+    var KEY = 'Qssdsdsd';
+    var IV = [0x12, 0x34, 0x56, 0x78, 0x90, 0xAB, 0xCD, 0xEF];
+    var message = obj.secret;
+    obj.org = message;
+    var en = crypto.encryptDes(message,KEY,IV);
+    obj.e_msg = en;
+    var de = crypto.decryptDes(en,KEY,IV);
+    obj.d_msg = de;
   }
   res.render("result", {obj: obj});
   //res.send("Success")
