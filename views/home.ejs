@@ -1,20 +1,21 @@
-    <form action="/display" method="POST">
+<div>
+  <div>
+    <h1 style="text-align: center;">Choose your encryption</h1>
+    <form action="/display" method="POST" style="margin: auto; width: 220px;">
       <div class="form-group">
-        <input
-          type="text"
-          class="form-control text-center"
-          name="secret"
-          placeholder="What's your secret?"
-        />
+        <input style="text-align: center;padding: 15px 32px;" type="text" class="form-control text-center" name="secret"
+          placeholder="What's your secret?" />
       </div>
-      <input list="algos" name="algo" />
-      <datalist id="algos">
-        <option value="RSA"></option>
-        <option value="AES"></option>
-        <option value="DES"></option>
-      </datalist>
-
-      <input type="submit" class="btn btn-dark" />
+      <div style="align-items: center;padding-top:25px ;">
+        <select name="algo" id="algos" style="text-align: center;padding: 15px 32px;">
+          <option value="RSA">RSA</option>
+          <option value="AES">AES</option>
+          <option value="DES">DES</option>
+        </select>
+      </div>
+      <div style="padding-top: 25px;">
+        <input type="submit" class="btn btn-dark" style="text-align: center;padding: 15px 32px;" />
+      </div>
     </form>
   </div>
 </div>
